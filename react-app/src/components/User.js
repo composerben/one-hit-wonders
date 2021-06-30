@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getKitsByUserId } from "../store/kit";
 
 function User() {
   const [user, setUser] = useState({});
+  const dispatch = useDispatch();
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId } = useParams();
+  const userKits = useSelector((state) => state.kitReducer.byId);
 
   useEffect(() => {
     if (!userId) {
@@ -16,7 +20,8 @@ function User() {
       const user = await response.json();
       setUser(user);
     })();
-  }, [userId]);
+    dispatch(getKitsByUserId(userId));
+  }, [userId, dispatch]);
 
   if (!user) {
     return null;
