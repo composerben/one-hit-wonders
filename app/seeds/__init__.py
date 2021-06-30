@@ -22,7 +22,7 @@ def seed():
 
 @seed_commands.command('undo')
 def undo():
-    undo_users()
-    undo_genres()
     undo_drum_types()
+    undo_genres()
+    undo_users()
     # Add other undo functions here
