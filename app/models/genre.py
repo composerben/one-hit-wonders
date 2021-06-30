@@ -7,6 +7,8 @@ class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False, unique=True)
 
+    kits = db.relationship("Kit", back_populates="genre")
+
     def to_dict(self):
         return {
             "id": self.id,
