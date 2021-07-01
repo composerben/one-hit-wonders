@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getKitsByUserId } from "../store/kit";
+import { getKitsByUserId } from "../../store/kit";
+import Kit from "../Kit/Kit";
 
 function User() {
   const [user, setUser] = useState({});
@@ -9,7 +10,6 @@ function User() {
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId } = useParams();
-  const userKits = useSelector((state) => state.kitReducer.byId);
 
   useEffect(() => {
     if (!userId) {
@@ -38,6 +38,7 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
+      <Kit />
     </ul>
   );
 }

@@ -1,0 +1,12 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  align-items: center;
+  height: 50px;
+}
+
+.navbar__element a {
+  color: white;
+  text-decoration: unset;
+}
