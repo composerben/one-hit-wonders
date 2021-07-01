@@ -8,7 +8,10 @@ const NavBar = () => {
     <nav className="navbar">
       <div className="navbar__element">
         <NavLink to="/" exact={true}>
-          Home
+          <img
+            alt="Site Logo"
+            src="https://one-hit-wonders.s3.us-west-2.amazonaws.com/Screen+Shot+2021-07-01+at+1.52.58+PM.png"
+          ></img>
         </NavLink>
       </div>
       <div className="navbar__element">

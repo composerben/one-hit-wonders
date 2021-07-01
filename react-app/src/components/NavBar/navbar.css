@@ -3,10 +3,15 @@
   justify-content: space-between;
   background-color: black;
   align-items: center;
-  height: 50px;
+  height: 80px;
 }
 
 .navbar__element a {
   color: white;
   text-decoration: unset;
+}
+
+.navbar img {
+  width: 160px;
+  height: 80px;
 }

@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { getKitsByUserId } from "../../store/kit";
 import Kit from "../Kit/Kit";
 
+import "./user.css";
+
 function User() {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
@@ -38,7 +40,9 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
-      <Kit />
+      <div className="kits-container">
+        <Kit />
+      </div>
     </ul>
   );
 }
