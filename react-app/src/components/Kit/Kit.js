@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "./kit.css"
+import "./kit.css";
 
 function Kit() {
   const userKits = useSelector((state) => Object.values(state.kitReducer.byId));
+  console.log(userKits);
 
   const kitComponents = userKits?.map((kit) => {
     return (

@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getKitsByUserId } from "../../store/kit";
+import { getCurrentPageUser } from "../../store/user";
 import Kit from "../Kit/Kit";
 
 import "./user.css";
 
 function User() {
-  const [user, setUser] = useState({});
   const dispatch = useDispatch();
-  // Notice we use useParams here instead of getting the params
-  // From props.
   const { userId } = useParams();
+  const user = useSelector((state) => state.userReducer);
+  console.log("Use selector USER", user);
 
   useEffect(() => {
     if (!userId) {
       return;
     }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
+    dispatch(getCurrentPageUser(userId));
     dispatch(getKitsByUserId(userId));
   }, [userId, dispatch]);
 
