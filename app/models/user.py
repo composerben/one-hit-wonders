@@ -30,5 +30,6 @@ class User(db.Model, UserMixin):
             "id": self.id,
             "username": self.username,
             "email": self.email,
-            "profile_img_url": self.profile_img_url
+            "profile_img_url": self.profile_img_url,
+            "kits": [kit.to_dict() for kit in self.kits]
         }

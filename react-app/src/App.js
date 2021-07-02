@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar/NavBar.js";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
-import User from "./components/User";
+import User from "./components/User/User";
 import { authenticate } from "./store/session";
 import { useDispatch } from "react-redux";
 
@@ -41,9 +41,10 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <Route path="/" exact={true}>
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </Route>
+        <h1>404: Not Found</h1>
       </Switch>
     </BrowserRouter>
   );
