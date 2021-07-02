@@ -13,6 +13,7 @@ class Kit(db.Model):
 
     user = db.relationship("User", back_populates="kits")
     genre = db.relationship("Genre", back_populates="kits")
+    samples = db.relationship("Sample", back_populates="kit")
 
     def to_dict(self):
         return {
@@ -20,5 +21,6 @@ class Kit(db.Model):
             "name": self.name,
             "user_id": self.user_id,
             "genre_id": self.genre_id,
-            "cover_img_url": self.cover_img_url
+            "cover_img_url": self.cover_img_url,
+            "samples": self.samples
         }
