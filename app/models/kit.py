@@ -22,5 +22,5 @@ class Kit(db.Model):
             "user_id": self.user_id,
             "genre_id": self.genre_id,
             "cover_img_url": self.cover_img_url,
-            "samples": self.samples
+            "samples": [sample.to_dict() for sample in self.samples]
         }

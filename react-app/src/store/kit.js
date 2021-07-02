@@ -15,6 +15,12 @@ export const getKitsByUserId = (userId) => async (dispatch) => {
   dispatch(getKits(data.kits));
 };
 
+export const getCurrentKit = (kitId) => async (dispatch) => {
+  const response = await fetch(`/api/kits/${kitId}`);
+  const data = await response.json();
+  dispatch(getKits(data.kits));
+};
+
 //reducer
 const initialState = {
   byId: {},

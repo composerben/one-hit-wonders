@@ -13,5 +13,5 @@ class Drum_Type(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "samples": self.samples
+            "samples": [sample.to_dict() for sample in self.samples]
         }
