@@ -11,7 +11,8 @@ function User() {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const user = useSelector((state) => state.userReducer);
-  console.log("Use selector USER", user);
+  const userKits = user.byId[userId]?.kits;
+  console.log(userKits);
 
   useEffect(() => {
     if (!userId) {
@@ -25,6 +26,14 @@ function User() {
     return null;
   }
 
+  const userKitComponents = userKits?.map((kit) => {
+    return (
+      <div key={kit.id}>
+        <Kit kit={kit} />
+      </div>
+    );
+  });
+
   return (
     <ul>
       <li>
@@ -36,9 +45,7 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
-      <div className="kits-container">
-        <Kit />
-      </div>
+      <div className="kits-container">{userKitComponents}</div>
     </ul>
   );
 }
