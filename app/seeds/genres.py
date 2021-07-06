@@ -13,6 +13,7 @@ def seed_genres():
     rock = Genre(name="Rock")
     techno = Genre(name="Techno")
     trap = Genre(name="Trap")
+    lofi = Genre(name="Lofi")
 
     db.session.add(ambient)
     db.session.add(chiptune)
@@ -25,6 +26,7 @@ def seed_genres():
     db.session.add(rock)
     db.session.add(techno)
     db.session.add(trap)
+    db.session.add(lofi)
 
     db.session.commit()
 

@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .genres import seed_genres, undo_genres
 from .drum_types import seed_drum_types, undo_drum_types
 from .kits import seed_kits, undo_kits
+from .samples import seed_samples, undo_samples
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -17,6 +18,7 @@ def seed():
     seed_genres()
     seed_drum_types()
     seed_kits()
+    seed_samples()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -24,6 +26,7 @@ def seed():
 
 @seed_commands.command('undo')
 def undo():
+    undo_samples()
     undo_kits()
     undo_drum_types()
     undo_genres()

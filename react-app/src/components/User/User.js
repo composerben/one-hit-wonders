@@ -10,7 +10,6 @@ function User() {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const user = useSelector((state) => state.userReducer.byId[userId]);
-  console.log(user);
   const userKits = user?.kits;
 
   useEffect(() => {
