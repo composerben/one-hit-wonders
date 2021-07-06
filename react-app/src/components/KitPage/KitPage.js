@@ -11,8 +11,15 @@ function KitPage() {
   const kitSamples = currentKit?.samples;
 
   useEffect(() => {
+    if (!kitId) {
+      return;
+    }
     dispatch(getCurrentKit(kitId));
   }, [kitId, dispatch]);
+
+  if (!currentKit) {
+    return null;
+  }
 
   const kitSampleComponents = kitSamples?.map((sample) => {
     return (

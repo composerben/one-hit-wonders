@@ -9,16 +9,17 @@ const getKits = (kits) => ({
 
 //thunks
 export const getKitsByUserId = (userId) => async (dispatch) => {
-  const res = await fetch(`/api/kits/${userId}`);
+  const res = await fetch(`/api/kits/users/${userId}`);
   const data = await res.json();
 
   dispatch(getKits(data.kits));
 };
 
 export const getCurrentKit = (kitId) => async (dispatch) => {
+  // debugger;
   const response = await fetch(`/api/kits/${kitId}`);
   const data = await response.json();
-  dispatch(getKits(data.kits));
+  dispatch(getKits([data.kit]));
 };
 
 //reducer
