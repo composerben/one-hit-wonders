@@ -13,14 +13,6 @@ const postKit = (kit) => ({
   kit,
 });
 
-//thunks
-export const getKitsByUserId = (userId) => async (dispatch) => {
-  const res = await fetch(`/api/kits/users/${userId}`);
-  const data = await res.json();
-
-  dispatch(getKits(data.kits));
-};
-
 export const getCurrentKit = (kitId) => async (dispatch) => {
   // debugger;
   const response = await fetch(`/api/kits/${kitId}`);
@@ -31,14 +23,13 @@ export const getCurrentKit = (kitId) => async (dispatch) => {
 export const postOneKit = (data) => async (dispatch) => {
   const res = await fetch("/api/kits", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+    body: data,
   });
-  console.log(res.json());
+  console.log("RES.JSON", res.json());
+
   if (res.ok) {
     const kit = await res.json();
+
     dispatch(postKit(kit));
     return kit;
   }

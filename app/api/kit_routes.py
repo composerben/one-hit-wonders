@@ -7,7 +7,7 @@ from app.forms import KitForm
 kit_routes = Blueprint("kits", __name__)
 
 
-#GET /api/kits
+# GET /api/kits
 @kit_routes.route("")
 def all_kits():
     kits = Kit.query.all()
@@ -33,6 +33,7 @@ def current_kit(id):
 @kit_routes.route("", methods=["POST"])
 @login_required
 def upload_cover_img():
+    print(request.files)
     if "cover_img_url" not in request.files:
         return {"errors": "image required"}, 400
 
@@ -52,14 +53,14 @@ def upload_cover_img():
 
     form = KitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_kit = Kit(
-            name=form.data["name"],
-            user_id=current_user.id,
-            genre_id=form.data["select_genre"],
-            cover_img_url=url
-        )
+    # if form.validate_on_submit():
+    new_kit = Kit(
+        name=form.data["name"],
+        user_id=current_user.id,
+        genre_id=form.data["select_genre"],
+        cover_img_url=url
+    )
 
-        db.session.add(new_kit)
-        db.session.commit()
-        return {"url": url}
+    db.session.add(new_kit)
+    db.session.commit()
+    return new_kit.to_dict()

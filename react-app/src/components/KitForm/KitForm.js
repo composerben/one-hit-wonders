@@ -6,7 +6,7 @@ import { getAllGenres } from "../../store/genre";
 
 const KitForm = () => {
   const [name, setName] = useState("");
-  const [genreId, setGenreId] = useState(0);
+  const [genreId, setGenreId] = useState(1);
   const [coverImg, setCoverImg] = useState(null);
   const [coverLoading, setCoverLoading] = useState(false);
   const history = useHistory();
@@ -20,14 +20,12 @@ const KitForm = () => {
 
   function submitForm(e) {
     e.preventDefault();
-    dispatch(
-      postOneKit({
-        name,
-        genre_id: genreId,
-        user_id: userId,
-        cover_img_url: coverImg,
-      })
-    );
+    const formData = new FormData();
+    formData.append("cover_img_url", coverImg);
+    formData.append("name", name);
+    formData.append("genre_id", genreId);
+    formData.append("user_id", userId);
+    dispatch(postOneKit(formData));
   }
 
   const updateImage = (e) => {
@@ -50,14 +48,16 @@ const KitForm = () => {
         </div>
         <div>
           <label htmlFor="select-genre">Genre:</label>
-          <select hame="genre">
+          <select
+            hame="genre"
+            onChange={(e) => {
+              debugger;
+              setGenreId(e.target.value);
+            }}
+          >
             {genres &&
               genres.map((genre) => (
-                <option
-                  key={genre.id}
-                  value={genre.id}
-                  onChange={() => console.log(genre.id)}
-                >
+                <option key={genre.id} value={genre.id}>
                   {genre.name}
                 </option>
               ))}
