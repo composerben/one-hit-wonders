@@ -37,9 +37,16 @@ const NavBar = () => {
         </NavLink>
       </div>
       {currentUser && (
-        <div className="navbar__element">
-          <LogoutButton />
-        </div>
+        <>
+          <div className="navbar__element">
+            <NavLink to="/new-kit" exact={true}>
+              Add Stuff to Hit
+            </NavLink>
+          </div>
+          <div className="navbar__element">
+            <LogoutButton />
+          </div>
+        </>
       )}
     </nav>
   );

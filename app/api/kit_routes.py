@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Kit, db
 from app.aws import(upload_file_to_s3, allowed_file, get_unique_filename)
 from flask_login import login_required, current_user
+from app.forms import KitForm
 
 kit_routes = Blueprint("kits", __name__)
 
@@ -32,23 +33,33 @@ def current_kit(id):
 @kit_routes.route("", methods=["POST"])
 @login_required
 def upload_cover_img():
-    if "cover_img" not in request.files:
+    if "cover_img_url" not in request.files:
         return {"errors": "image required"}, 400
 
-    cover_img = request.files["cover_img"]
+    cover_img_url = request.files["cover_img_url"]
 
-    if not allowed_file(cover_img.filename):
+    if not allowed_file(cover_img_url.filename):
         return {"errors: file type not supported: must be a pdf, png, jpg, jpeg, or gif"}, 400
 
-    cover_img.filename = get_unique_filename(cover_img.filename)
+    cover_img_url.filename = get_unique_filename(cover_img_url.filename)
 
-    upload = upload_file_to_s3(cover_img)
+    upload = upload_file_to_s3(cover_img_url)
 
     if "url" not in upload:
         return upload, 400
 
     url = upload["url"]
 
-    new_kit = Kit(cover_img_url=url)
-    db.session.add(new_kit)
-    db.session.commit()
+    form = KitForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_kit = Kit(
+            name=form.data["name"],
+            user_id=current_user.id,
+            genre_id=form.data["select_genre"],
+            cover_img_url=url
+        )
+
+        db.session.add(new_kit)
+        db.session.commit()
+        return {"url": url}

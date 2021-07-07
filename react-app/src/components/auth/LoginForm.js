@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
+import "./login-form.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,8 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    // <div className="form-container">
+    <form className="login-form" onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
@@ -59,6 +61,7 @@ const LoginForm = () => {
         <button type="submit">Login</button>
       </div>
     </form>
+    // </div>
   );
 };
 
