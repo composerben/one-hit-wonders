@@ -32,6 +32,9 @@ def current_kit(id):
 @kit_routes.route("", methods=["POST"])
 @login_required
 def upload_cover_img():
+    print("*******REQUEST OBJECT*******", request.files)
+    print("*******REPR*******", request.__repr__)
+
     if "cover_img_url" not in request.files:
         return {"errors": "image required"}, 400
     if "audio_url" not in request.files:
@@ -61,6 +64,7 @@ def upload_cover_img():
 
     form = KitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("SAMPLE FORM DATA", form.data)
     # if form.validate_on_submit():
     new_kit = Kit(
         name=form.data["name"],
@@ -68,7 +72,7 @@ def upload_cover_img():
         genre_id=form.data["genre_id"],
         cover_img_url=url
     )
-    
+    all_samples = []
 
     db.session.add(new_kit)
     db.session.commit()

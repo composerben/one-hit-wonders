@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User/User";
 import KitPage from "./components/KitPage/KitPage";
 import KitForm from "./components/KitForm/KitForm";
+import DrumMachine from "./components/DrumMachine/DrumMachine";
 
 import { authenticate } from "./store/session";
 
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path="/new-kit" exact={true}>
           <KitForm />
+        </Route>
+        <Route path="/hit-stuff" exact={true}>
+          <DrumMachine />
         </Route>
         <h1>404: Not Found</h1>
       </Switch>
