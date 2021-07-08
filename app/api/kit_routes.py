@@ -26,7 +26,6 @@ def user_kits(user_id):
 @kit_routes.route("/<int:id>")
 def current_kit(id):
     kit = Kit.query.get(id)
-    print(kit)
     return {"kit": kit.to_dict()}
 
 
