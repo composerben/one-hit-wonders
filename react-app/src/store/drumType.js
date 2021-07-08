@@ -21,7 +21,6 @@ export default function drumTypeReducer(state = initialState, action) {
   switch (action.type) {
     case GET_DRUM_TYPES:
       const newState = { ...state };
-      console.log("NEW STATE", newState);
       action.drumTypes.forEach((type) => {
         newState.byId[type.id] = type;
         newState.allIds.push(type.id);
