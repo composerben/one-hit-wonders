@@ -25,7 +25,6 @@ export const postOneKit = (data) => async (dispatch) => {
     method: "POST",
     body: data,
   });
-  console.log("RES.JSON", res.json());
 
   if (res.ok) {
     const kit = await res.json();

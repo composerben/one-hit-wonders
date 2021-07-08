@@ -57,7 +57,7 @@ def upload_cover_img():
     new_kit = Kit(
         name=form.data["name"],
         user_id=current_user.id,
-        genre_id=form.data["select_genre"],
+        genre_id=form.data["genre_id"],
         cover_img_url=url
     )
 

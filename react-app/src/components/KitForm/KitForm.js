@@ -26,6 +26,7 @@ const KitForm = () => {
     formData.append("genre_id", genreId);
     formData.append("user_id", userId);
     dispatch(postOneKit(formData));
+    // history.push("/");
   }
 
   const updateImage = (e) => {
@@ -49,10 +50,11 @@ const KitForm = () => {
         <div>
           <label htmlFor="select-genre">Genre:</label>
           <select
-            hame="genre"
+            name="genre"
+            value={genreId}
             onChange={(e) => {
               debugger;
-              setGenreId(e.target.value);
+              setGenreId(() => parseInt(e.target.value));
             }}
           >
             {genres &&

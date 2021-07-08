@@ -5,5 +5,5 @@ from wtforms.validators import DataRequired, ValidationError
 
 class KitForm(FlaskForm):
     name = StringField("Kit Name", validators=[DataRequired()])
-    select_genre = IntegerField("Select a genre", validators=[DataRequired()])
+    genre_id = IntegerField("Select a genre", validators=[DataRequired()])
     cover_img = StringField("Kit Cover", validators=[DataRequired()])
