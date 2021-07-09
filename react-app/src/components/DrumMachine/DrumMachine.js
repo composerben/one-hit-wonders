@@ -36,25 +36,25 @@ const DrumMachine = () => {
         <h1>Hello from Drum Machine</h1>
         <div className="black-keys-container">
           <div className="black-keys-layer-one">
-            <div data-key="87" class="drum">
+            <div data-key="87" className="drum">
               <kbd>W</kbd>
               <p>Click</p>
             </div>
-            <div data-key="69" class="drum">
+            <div data-key="69" className="drum">
               <kbd>E</kbd>
               <p>Clap</p>
             </div>
           </div>
           <div className="black-keys-layer-two">
-            <div data-key="84" class="drum">
+            <div data-key="84" className="drum">
               <kbd>T</kbd>
               <p>Hi-hat</p>
             </div>
-            <div data-key="89" class="drum">
+            <div data-key="89" className="drum">
               <kbd>Y</kbd>
               <p>Ride</p>
             </div>
-            <div data-key="85" class="drum">
+            <div data-key="85" className="drum">
               <kbd>U</kbd>
               <p>Crash</p>
             </div>
@@ -62,31 +62,31 @@ const DrumMachine = () => {
         </div>
         <div className="white-keys-container">
           <div className="white-keys">
-            <div data-key="65" class="drum">
-              <kbd>A</kbd>
+            <div data-key="65" className="drum">
+              <kbd onClick={(e) => console.log(e)}>A</kbd>
               <p>Kick</p>
             </div>
-            <div data-key="83" class="drum">
+            <div data-key="83" className="drum">
               <kbd>S</kbd>
               <p>Snare</p>
             </div>
-            <div data-key="68" class="drum">
+            <div data-key="68" className="drum">
               <kbd>D</kbd>
-              <p>Low Tom</p>
-            </div>
-            <div data-key="70" class="drum">
-              <kbd>F</kbd>
               <p>High Tom</p>
             </div>
-            <div data-key="71" class="drum">
+            <div data-key="70" className="drum">
+              <kbd>F</kbd>
+              <p>Low Tom</p>
+            </div>
+            <div data-key="71" className="drum">
               <kbd>G</kbd>
               <p>Beep</p>
             </div>
-            <div data-key="72" class="drum">
+            <div data-key="72" className="drum">
               <kbd>H</kbd>
               <p>Vocal</p>
             </div>
-            <div data-key="73" class="drum">
+            <div data-key="73" className="drum">
               <kbd>J</kbd>
               <p>Sub</p>
             </div>
