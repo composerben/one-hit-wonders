@@ -39,7 +39,7 @@ const NavBar = () => {
       {currentUser && (
         <>
           <div className="navbar__element">
-            <NavLink to="/hit-stuff" exact={true}>
+            <NavLink className="hit-stuff" to="/hit-stuff" exact={true}>
               HIT ALL THE THINGS
             </NavLink>
           </div>

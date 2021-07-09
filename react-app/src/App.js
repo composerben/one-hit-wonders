@@ -10,6 +10,7 @@ import User from "./components/User/User";
 import KitPage from "./components/KitPage/KitPage";
 import KitForm from "./components/KitForm/KitForm";
 import DrumMachine from "./components/DrumMachine/DrumMachine";
+import SplashPage from "./components/SplashPage/SplashPage";
 
 import { authenticate } from "./store/session";
 
@@ -46,7 +47,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path="/" exact={true}>
-          <h1>Splash Page</h1>
+          <SplashPage />
         </Route>
         <Route path="/kits/:kitId" exact={true}>
           <KitPage />

@@ -4,12 +4,14 @@ import "./kit.css";
 
 function Kit({ kit }) {
   return (
-    <Link to={`/kits/${kit.id}`}>
-      <div className="kit-card">
+    <div className="kit-card">
+      <Link to={`/kits/${kit.id}`}>
         <h2>{kit.name}</h2>
         <img alt={`${kit.name} Kit cover`} src={kit.cover_img_url}></img>
-      </div>
-    </Link>
+      </Link>
+      <button>Edit</button>
+      <button>Delete</button>
+    </div>
   );
 }
 
