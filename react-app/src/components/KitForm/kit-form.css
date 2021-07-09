@@ -1,0 +1,14 @@
+.kit-form-container {
+  border: 3px solid greenyellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kit-form__kit-fields {
+  border: 3px solid red;
+}
+
+.kit-form__sample-fields-container {
+  border: 3px solid black;
+}

@@ -1,0 +1,43 @@
+.page-contents {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  position: relative;
+  width: 250px;
+  height: 100%;
+  background-color: rgb(145, 202, 252);
+}
+
+.drum {
+  font-size: 16pt;
+  text-align: center;
+  border: 3px solid black;
+  width: 120px;
+}
+
+kbd {
+  font-size: 40pt;
+}
+
+.black-keys-container {
+  display: flex;
+  flex-direction: row;
+  border: 3px solid purple;
+  width: 100vw;
+}
+
+.black-keys-layer-one,
+.black-keys-layer-two {
+  display: flex;
+}
+
+.black-keys-layer-one {
+  margin-right: auto;
+}
+
+.black-keys-layer-two {
+  margin: auto;
+  padding-right: 8rem;
+}

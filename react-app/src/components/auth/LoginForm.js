@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
+import "./login-form.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,11 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(login("demo@aa.io", "password"));
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -31,7 +37,8 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    // <div className="form-container">
+    <form className="login-form" onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
@@ -57,8 +64,10 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type="submit">Login</button>
+        <button onClick={demoLogin}>Demo User</button>
       </div>
     </form>
+    // </div>
   );
 };
 
