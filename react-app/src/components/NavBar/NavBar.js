@@ -32,8 +32,8 @@ const NavBar = () => {
         </>
       )}
       <div className="navbar__element">
-        <NavLink to="/users" exact={true}>
-          users
+        <NavLink to="/kits" exact={true}>
+          all the stuff
         </NavLink>
       </div>
       {currentUser && (

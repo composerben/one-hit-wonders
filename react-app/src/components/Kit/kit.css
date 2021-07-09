@@ -1,10 +1,25 @@
 .kit-card {
   width: 300px;
+  height: 350px;
   border: 3px solid black;
   padding: 10px;
   margin: 10px;
+  background-color: rgba(179, 155, 155, 0.742);
+  border-radius: 10px;
 }
+
+/* .kit-card:hover {
+
+} */
 
 .kit-card img {
   width: 300px;
+  height: 250px;
+}
+
+.kit-card a {
+  text-decoration: unset;
+  color: black;
+  font-family: "Tourney", cursive;
+  text-align: center;
 }

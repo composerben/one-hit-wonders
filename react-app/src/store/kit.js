@@ -19,6 +19,12 @@ const deleteKit = (kit) => ({
   kit,
 });
 
+export const getAllKits = () => async (dispatch) => {
+  const response = await fetch("/api/kits")
+  const data = await response.json()
+  dispatch(getKits(data.kits))
+}
+
 export const getCurrentKit = (kitId) => async (dispatch) => {
   // debugger;
   const response = await fetch(`/api/kits/${kitId}`);

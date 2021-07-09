@@ -5,7 +5,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar.js";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
+import KitList from "./components/KitList/KitList";
 import User from "./components/User/User";
 import KitPage from "./components/KitPage/KitPage";
 import KitForm from "./components/KitForm/KitForm";
@@ -40,8 +40,8 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
+        <ProtectedRoute path="/kits" exact={true}>
+          <KitList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />

@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteOneKit } from "../../store/kit";
 import "./kit.css";
 
-function Kit({ kit }) {
+function Kit({ kit, setLoaded }) {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.session.user);
 
   const onDelete = async (kit) => {
     await dispatch(deleteOneKit(kit.id));
+    setLoaded((prev) => !prev);
   };
 
   return (
