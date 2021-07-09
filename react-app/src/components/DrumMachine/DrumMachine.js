@@ -8,36 +8,57 @@ const DrumMachine = () => {
   const drumTypes = useSelector((state) =>
     Object.values(state.drumTypeReducer.byId)
   );
-  console.log(drumTypes);
+
   useEffect(() => {
     dispatch(getAllDrumTypes());
   }, [dispatch]);
+
   return (
-    <>
-      <h1>Hello from Drum Machine</h1>
+    <div className="page-contents">
       <div className="sidebar-container">
         <div className="sidebar">
-          <div className="drum-selector">
-            <label htmlFor="kick">Kick: </label>
-            <select name="kick">
-              {drumTypes &&
-                drumTypes[0]?.samples.map((sample) => (
+          {drumTypes?.map((drumType) => (
+            <div key={drumType.id} className="drum-selector">
+              <label htmlFor={drumType.name}>{drumType.name}: </label>
+              <select name={drumType.name}>
+                {drumType.samples?.map((sample) => (
                   <option key={sample.id}>{sample.name}</option>
                 ))}
-            </select>
+              </select>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="drum-machine-container">
+        <h1>Hello from Drum Machine</h1>
+        <div className="white-keys-container">
+          <div className="white-keys-layer-one">
+            <div data-key="87" class="drum">
+              <kbd>W</kbd>
+              <p>Kick</p>
+            </div>
+            <div data-key="69" class="drum">
+              <kbd>E</kbd>
+              <p>Clap</p>
+            </div>
           </div>
-          <div className="drum-selector">
-            <label htmlFor="kick">Click: </label>
-            <select name="kick">
-              {drumTypes &&
-                drumTypes[1]?.samples.map((sample) => (
-                  <option key={sample.id}>{sample.name}</option>
-                ))}
-            </select>
+          <div className="white-keys-layer-two">
+            <div data-key="84" class="drum">
+              <kbd>T</kbd>
+              <p>Hi-hat</p>
+            </div>
+            <div data-key="89" class="drum">
+              <kbd>Y</kbd>
+              <p>Ride</p>
+            </div>
+            <div data-key="85" class="drum">
+              <kbd>U</kbd>
+              <p>Crash</p>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
