@@ -34,10 +34,21 @@ kbd {
 }
 
 .black-keys-layer-one {
-  margin-right: auto;
+  margin-left: 4em;
 }
 
 .black-keys-layer-two {
-  margin: auto;
-  padding-right: 8rem;
+  margin-left: 8em;
+}
+
+.white-keys-container {
+  display: flex;
+  /* flex-direction: row; */
+  border: 3px solid rgb(227, 220, 18);
+  width: 100vw;
+}
+
+.white-keys {
+  display: flex;
+  flex-direction: row;
 }
