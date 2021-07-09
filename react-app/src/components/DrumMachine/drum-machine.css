@@ -10,6 +10,10 @@
   background-color: rgb(145, 202, 252);
 }
 
+.drum-machine-container {
+  background-color: rgb(165, 165, 220);
+}
+
 .drum {
   font-size: 16pt;
   text-align: center;
@@ -36,6 +40,8 @@ kbd {
 .black-keys-layer-one,
 .black-keys-layer-two {
   display: flex;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.612);
 }
 
 .black-keys-layer-one {
@@ -56,4 +62,5 @@ kbd {
 .white-keys {
   display: flex;
   flex-direction: row;
+  background-color: white;
 }
