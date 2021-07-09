@@ -100,13 +100,16 @@ const KitForm = () => {
 
   function submitForm(e) {
     e.preventDefault();
+    debugger;
     const formData = new FormData();
     formData.append("cover_img_url", coverImg);
     formData.append("name", name);
     formData.append("genre_id", genreId);
     formData.append("user_id", userId);
     formData.append("samples", JSON.stringify(samples));
-    formData.append("sample_field_files", samples.map((sample) => sample.audio_url))
+    samples.forEach((sample) => {
+      formData.append("audio_url", sample.audio_url);
+    });
     dispatch(postOneKit(formData));
     history.push(`/users/${userId}`);
   }

@@ -21,5 +21,5 @@ class Sample(db.Model):
             "drum_type_id": self.drum_type_id,
             "kit_id": self.kit_id,
             "audio_url": self.audio_url,
-            "drum_type": self.drum_type.name,
+            "drum_type": self.drum_type.simple_dict(),
         }

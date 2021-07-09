@@ -21,6 +21,23 @@ kbd {
   font-size: 40pt;
 }
 
-.white-keys-container {
+.black-keys-container {
   display: flex;
+  flex-direction: row;
+  border: 3px solid purple;
+  width: 100vw;
+}
+
+.black-keys-layer-one,
+.black-keys-layer-two {
+  display: flex;
+}
+
+.black-keys-layer-one {
+  margin-right: auto;
+}
+
+.black-keys-layer-two {
+  margin: auto;
+  padding-right: 8rem;
 }
