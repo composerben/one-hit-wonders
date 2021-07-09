@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOneKit } from "../../store/kit";
 import "./kit.css";
 
 function Kit({ kit, setLoaded }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const loggedInUser = useSelector((state) => state.session.user);
+
+  const toEditKitForm = () => {
+    history.push(`/edit-kit/${kit.id}`);
+  };
 
   const onDelete = async (kit) => {
     await dispatch(deleteOneKit(kit.id));
@@ -21,7 +26,7 @@ function Kit({ kit, setLoaded }) {
       </Link>
       {loggedInUser.id === kit.user_id && (
         <>
-          <button>Edit</button>
+          <button onClick={() => toEditKitForm()}>Edit</button>
           <button onClick={() => onDelete(kit)}>Delete</button>
         </>
       )}
