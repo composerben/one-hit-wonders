@@ -13,7 +13,8 @@ class Kit(db.Model):
 
     user = db.relationship("User", back_populates="kits")
     genre = db.relationship("Genre", back_populates="kits")
-    samples = db.relationship("Sample", back_populates="kit")
+    samples = db.relationship("Sample", back_populates="kit",
+                              passive_deletes=True, cascade="all,delete-orphan")
 
     def to_dict(self):
         return {

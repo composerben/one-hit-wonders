@@ -4,6 +4,8 @@
   background-color: black;
   align-items: center;
   height: 80px;
+  font-family: "Tourney", cursive;
+  font-size: 16pt;
 }
 
 .navbar__element a {
@@ -16,7 +18,7 @@
   height: 80px;
 }
 
-.hit-stuff {
-  font-family: "Tourney", cursive;
-  font-size: 20pt;
+.hit-stuff p {
+  font-size: 25pt;
+  color: red;
 }

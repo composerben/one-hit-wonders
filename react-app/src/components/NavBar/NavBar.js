@@ -33,19 +33,19 @@ const NavBar = () => {
       )}
       <div className="navbar__element">
         <NavLink to="/users" exact={true}>
-          Users
+          users
         </NavLink>
       </div>
       {currentUser && (
         <>
           <div className="navbar__element">
             <NavLink className="hit-stuff" to="/hit-stuff" exact={true}>
-              HIT ALL THE THINGS
+              <p>HIT STUFF</p>
             </NavLink>
           </div>
           <div className="navbar__element">
             <NavLink to="/new-kit" exact={true}>
-              Add Stuff to Hit
+              add stuff to hit
             </NavLink>
           </div>
           <div className="navbar__element">

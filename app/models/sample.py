@@ -8,7 +8,7 @@ class Sample(db.Model):
     name = db.Column(db.String(50), nullable=False)
     drum_type_id = db.Column(db.Integer, db.ForeignKey(
         "drum_types.id"), nullable=False)
-    kit_id = db.Column(db.Integer, db.ForeignKey("kits.id"), nullable=False)
+    kit_id = db.Column(db.Integer, db.ForeignKey("kits.id", ondelete="CASCADE"), nullable=False)
     audio_url = db.Column(db.String, nullable=False)
 
     drum_type = db.relationship("Drum_Type", back_populates="samples")

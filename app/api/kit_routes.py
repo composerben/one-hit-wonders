@@ -15,7 +15,7 @@ def all_kits():
     return {"kits": [kit.to_dict() for kit in kits]}
 
 
-# GET /api/kits/<int:user_id>
+# GET /api/kits/users/<int:user_id>
 @kit_routes.route("/users/<int:user_id>")
 def user_kits(user_id):
     kits = Kit.query.filter(Kit.user_id == user_id).all()
@@ -27,6 +27,15 @@ def user_kits(user_id):
 def current_kit(id):
     kit = Kit.query.get(id)
     return {"kit": kit.to_dict()}
+
+
+# DELETE /api/kits/<int:id>
+@kit_routes.route("/<int:id>", methods=["DELETE"])
+def delete_kit(id):
+    kit = Kit.query.get(id)
+    db.session.delete(kit)
+    db.session.commit()
+    return {"message": "success"}
 
 
 # POST /api/kits
