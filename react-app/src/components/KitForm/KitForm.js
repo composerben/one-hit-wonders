@@ -118,7 +118,7 @@ const KitForm = () => {
     const file = e.target.files[0];
     setCoverImg(file);
   };
-  console.log(samples);
+  
   return (
     <div className="kit-form-container">
       <h1>Add a kit, hit some drums!</h1>

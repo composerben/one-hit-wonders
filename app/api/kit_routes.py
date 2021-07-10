@@ -42,10 +42,6 @@ def delete_kit(id):
 @kit_routes.route("", methods=["POST"])
 @login_required
 def upload_cover_img():
-    print("*******REQUEST OBJECT*******", request.files)
-    print("*******REQUEST DATA*******", request.data)
-    print("*******REPR*******", request.__repr__)
-
     if "cover_img_url" not in request.files:
         return {"errors": "image required"}, 400
     if "audio_url" not in request.files:
@@ -53,7 +49,7 @@ def upload_cover_img():
 
     cover_img_url = request.files["cover_img_url"]
     audio_urls = request.files.getlist("audio_url")
-    print("AUDIO URLS", audio_urls)
+    
     if not allowed_file(cover_img_url.filename):
         return {"errors": "file type not supported: must be a pdf, png, jpg, jpeg, or gif"}, 400
 
@@ -62,14 +58,12 @@ def upload_cover_img():
     for audio_url in audio_urls:
         if not allowed_file(audio_url.filename):
             return {"errors": "file type not supported: must be a wav, mp3, or aiff"}, 400
-        print("AUDIO FILENAME", audio_url.filename)
+        
         audio_url.filename = get_unique_filename(audio_url.filename)
         audio_uploads.append(upload_file_to_s3(audio_url))
-    print("UPLOADED TO S3")
+    
     cover_img_url.filename = get_unique_filename(cover_img_url.filename)
     # audio_urls.filename = get_unique_filename(audio_urls.filename)
-
-    print("AUDIO UPLOADS", audio_uploads)
 
     upload = upload_file_to_s3(cover_img_url)
 
@@ -78,12 +72,12 @@ def upload_cover_img():
     for audio_upload in audio_uploads:
         if "url" not in audio_upload:
             return audio_upload, 400
-    print("DATA PROBABLY RETURNED")
+    
     url = upload["url"]
 
     form = KitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("SAMPLE FORM DATA", form.data)
+
     # if form.validate_on_submit():
     new_kit = Kit(
         name=form.data["name"],
