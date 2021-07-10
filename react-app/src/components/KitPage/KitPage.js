@@ -11,7 +11,6 @@ function KitPage({ setLoaded }) {
   const { kitId } = useParams();
   const currentKit = useSelector((state) => state.kitReducer.byId[kitId]);
   const kitSamples = currentKit?.samples;
-  const sampleState = useSelector((state) => state.sampleReducer?.byId);
   const loggedInUser = useSelector((state) => state.session.user);
 
   useEffect(() => {

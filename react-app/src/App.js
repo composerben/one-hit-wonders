@@ -25,7 +25,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-  }, [dispatch]);
+  }, [dispatch, loaded]);
 
   if (!loaded) {
     return null;
@@ -51,7 +51,7 @@ function App() {
           <SplashPage />
         </Route>
         <Route path="/kits/:kitId" exact={true}>
-          <KitPage setLoaded={setLoaded}/>
+          <KitPage setLoaded={setLoaded} />
         </Route>
         <Route path="/new-kit" exact={true}>
           <KitForm />
