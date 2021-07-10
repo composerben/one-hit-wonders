@@ -20,7 +20,7 @@ const DrumMachine = () => {
           {drumTypes?.map((drumType) => (
             <div key={drumType.id} className="drum-selector">
               <label htmlFor={drumType.name}>{drumType.name}: </label>
-              <select name={drumType.name}>
+              <select className="dropdown" name={drumType.name}>
                 <option value="0" disabled>
                   Pick a {drumType.name}
                 </option>
@@ -33,7 +33,7 @@ const DrumMachine = () => {
         </div>
       </div>
       <div className="drum-machine-container">
-        <h1>Hello from Drum Machine</h1>
+        <h1 className="drum-machine-h1">MAKE SOME NOISE</h1>
         <div className="black-keys-container">
           <div className="black-keys-layer-one">
             <div data-key="87" className="drum">

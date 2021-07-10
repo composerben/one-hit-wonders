@@ -3,15 +3,29 @@
   height: 100vh;
 }
 
+.drum-machine-h1 {
+  font-family: "Tourney", cursive;
+  font-size: 40pt;
+}
+
 .sidebar {
   position: relative;
   width: 250px;
   height: 100%;
-  background-color: rgb(145, 202, 252);
+  background-color: rgb(33, 35, 36);
+}
+
+.sidebar label {
+  color: white;
+}
+
+.drum-selector {
+  padding: 10px;
+  justify-content: space-between;
 }
 
 .drum-machine-container {
-  background-color: rgb(165, 165, 220);
+  background-color: rgb(160, 15, 15);
 }
 
 .drum {
@@ -27,13 +41,13 @@ kbd {
 
 .drum {
   border-radius: 10px;
-  /* padding: 2px; */
 }
 
 .black-keys-container {
   display: flex;
   flex-direction: row;
   border: 3px solid purple;
+  justify-content: c;
   width: 100vw;
 }
 
@@ -41,7 +55,7 @@ kbd {
 .black-keys-layer-two {
   display: flex;
   color: white;
-  background-color: rgba(0, 0, 0, 0.612);
+  background-color: rgba(0, 0, 0, 0.776);
 }
 
 .black-keys-layer-one {

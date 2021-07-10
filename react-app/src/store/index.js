@@ -5,6 +5,7 @@ import kitReducer from "./kit";
 import userReducer from "./user";
 import genreReducer from "./genre";
 import drumTypeReducer from "./drumType";
+import sampleReducer from "./sample";
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   userReducer,
   genreReducer,
   drumTypeReducer,
+  sampleReducer,
 });
 
 let enhancer;

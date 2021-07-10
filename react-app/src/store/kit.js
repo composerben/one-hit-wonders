@@ -78,7 +78,6 @@ export default function kitReducer(state = initialState, action) {
     }
     case DELETE_KIT: {
       const newState = { ...state };
-      console.log(newState);
       delete newState.byId[action.kit.id];
       return newState;
     }

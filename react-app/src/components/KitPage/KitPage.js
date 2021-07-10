@@ -3,12 +3,16 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentKit } from "../../store/kit";
 import Sample from "../Sample/Sample";
+import { deleteOneSample } from "../../store/sample";
+import "./kit-page.css";
 
-function KitPage() {
+function KitPage({ setLoaded }) {
   const dispatch = useDispatch();
   const { kitId } = useParams();
   const currentKit = useSelector((state) => state.kitReducer.byId[kitId]);
   const kitSamples = currentKit?.samples;
+  const sampleState = useSelector((state) => state.sampleReducer?.byId);
+  const loggedInUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     if (!kitId) {
@@ -21,17 +25,28 @@ function KitPage() {
     return null;
   }
 
+  const onDelete = async (sample) => {
+    await dispatch(deleteOneSample(sample.id));
+    setLoaded((prev) => !prev);
+  };
+
   const kitSampleComponents = kitSamples?.map((sample) => {
     return (
       <div key={sample.id}>
         <Sample sample={sample} />
+        {loggedInUser.id === currentKit.user_id && (
+          <>
+            <button>Edit</button>
+            <button onClick={() => onDelete(sample)}>Delete</button>
+          </>
+        )}
       </div>
     );
   });
   return (
     <div className="sample-container">
       <img src={currentKit?.cover_img_url}></img>
-      {kitSampleComponents}
+      <div className="sample-components-container">{kitSampleComponents}</div>
     </div>
   );
 }
