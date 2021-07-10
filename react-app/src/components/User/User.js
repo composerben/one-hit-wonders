@@ -7,7 +7,7 @@ import Kit from "../Kit/Kit";
 import "./user.css";
 
 function User() {
-  const [loaded, setLoaded] = useState(false);
+  const [deleted, setDeleted] = useState(false);
   const dispatch = useDispatch();
   const { userId } = useParams();
   const user = useSelector((state) => state.userReducer.byId[userId]);
@@ -18,7 +18,8 @@ function User() {
       return;
     }
     dispatch(getCurrentPageUser(userId));
-  }, [userId, dispatch, loaded]);
+    setDeleted(!deleted);
+  }, [userId, dispatch, deleted]);
 
   if (!user) {
     return null;
@@ -27,7 +28,7 @@ function User() {
   const userKitComponents = userKits?.map((kit) => {
     return (
       <div key={kit.id}>
-        <Kit kit={kit} setLoaded={setLoaded} />
+        <Kit kit={kit} setDeleted={setDeleted} />
       </div>
     );
   });
