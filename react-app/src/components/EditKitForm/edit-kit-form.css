@@ -1,1 +1,46 @@
+.edit-kit-form {
+  box-sizing: border-box;
+  width: 40%;
 
+  margin: 10% auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-kit-form__element {
+  padding: 0.5rem;
+  font-size: 14pt;
+}
+
+.edit-kit-form__element h1 {
+  text-align: center;
+  font-family: "Tourney", cursive;
+}
+
+.edit-kit-form__element label {
+  display: inline-block;
+  font-family: "Tourney", cursive;
+  color: white;
+}
+
+.edit-kit-form__element input,
+select {
+  width: 60%;
+  background-color: black;
+  color: white;
+  float: right;
+  height: 20px;
+}
+
+@media (max-width: 950px) {
+  .edit-kit-form__element label {
+    display: none;
+  }
+
+  .edit-kit-form__element input,
+  select {
+    width: 75%;
+    margin-left: 5px;
+    float: left;
+  }
+}

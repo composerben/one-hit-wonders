@@ -38,9 +38,9 @@ const EditKitForm = () => {
 
   return (
     <form className="edit-kit-form">
-      <h1>Hello from EditKitForm</h1>
-      <div>
-        <label htmlFor="name">Kit name: </label>
+      <div className="edit-kit-form__element">
+        <h1>Update Kit</h1>
+        <label htmlFor="name">new name: </label>
         <input
           type="text"
           value={currentName}
@@ -48,8 +48,8 @@ const EditKitForm = () => {
           onChange={(e) => setCurrentName(e.target.value)}
         />
       </div>
-      <div>
-        <label htmlFor="select-genre">New Genre: </label>
+      <div className="edit-kit-form__element">
+        <label htmlFor="select-genre">new genre: </label>
         <select
           name="genre"
           value={currentGenreId}
@@ -62,8 +62,8 @@ const EditKitForm = () => {
           ))}
         </select>
       </div>
-      <div>
-        <label htmlFor="kit-photo">New Cover Image: </label>
+      <div className="edit-kit-form__element">
+        <label htmlFor="kit-photo">new cover image: </label>
         <input type="file" accept="coer_img_url/*" onChange={updateImage} />
       </div>
     </form>

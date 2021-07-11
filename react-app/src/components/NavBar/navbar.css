@@ -8,6 +8,10 @@
   font-size: 16pt;
 }
 
+.navbar__element {
+  margin-right: 10px;
+}
+
 .navbar__element a {
   color: white;
   text-decoration: unset;
