@@ -37,37 +37,41 @@ const LoginForm = () => {
   }
 
   return (
-    // <div className="form-container">
-    <form className="login-form" onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
-        <button onClick={demoLogin}>Demo User</button>
-      </div>
-    </form>
-    // </div>
+    <div className="form-container">
+      <form className="login-form" onSubmit={onLogin}>
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+        <div className="login-form__element">
+          <label htmlFor="email">email</label>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+          />
+        </div>
+        <div className="login-form__element">
+          <label htmlFor="password">password</label>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+          />
+        </div>
+        <div className="login-form__element">
+          <div className="login-buttons">
+            <button type="submit">LOGIN</button>
+            <button className="demo-button" onClick={demoLogin}>DEMO USER</button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 
