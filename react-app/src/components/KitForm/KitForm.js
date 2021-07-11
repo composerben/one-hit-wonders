@@ -8,7 +8,7 @@ import "./kit-form.css";
 
 const SampleFormField = ({ editSample, idx }) => {
   const [name, setName] = useState("");
-  const [drumTypeId, setDrumTypeId] = useState(1);
+  const [drumTypeId, setDrumTypeId] = useState(0);
   const [audioFile, setAudioFile] = useState(null);
   const drumTypes = useSelector((state) =>
     Object.values(state.drumTypeReducer.byId)
@@ -32,8 +32,8 @@ const SampleFormField = ({ editSample, idx }) => {
 
   return (
     <div className="sample-fields">
-      <div>
-        <label htmlFor="name">Sample name: </label>
+      <div className="sample-fields__element">
+        <label htmlFor="name">sample name</label>
         <input
           value={name}
           onChange={(e) => {
@@ -42,7 +42,9 @@ const SampleFormField = ({ editSample, idx }) => {
           type="text"
           placeholder="Name your sample"
         />
-        <label htmlFor="select-drum-type">Drum Type: </label>
+      </div>
+      <div className="sample-fields__element">
+        <label htmlFor="select-drum-type">drum</label>
         <select
           name="drum-type"
           value={drumTypeId}
@@ -50,6 +52,7 @@ const SampleFormField = ({ editSample, idx }) => {
             setDrumTypeId(() => parseInt(e.target.value));
           }}
         >
+          <option value="0" disabled>select drum</option>
           {drumTypes &&
             drumTypes.map((type) => (
               <option key={type.id} value={type.id}>
@@ -57,6 +60,9 @@ const SampleFormField = ({ editSample, idx }) => {
               </option>
             ))}
         </select>
+      </div>
+      <div className="sample-fields__element">
+        <label htmlFor="sample">audio</label>
         <input
           type="file"
           accept="audio_url/*"
@@ -65,6 +71,7 @@ const SampleFormField = ({ editSample, idx }) => {
           }}
         />
       </div>
+      <p>--------------</p>
     </div>
   );
 };
@@ -73,7 +80,6 @@ const KitForm = () => {
   const [name, setName] = useState("");
   const [genreId, setGenreId] = useState(1);
   const [coverImg, setCoverImg] = useState(null);
-  const [coverLoading, setCoverLoading] = useState(false);
   const [samples, setSamples] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -118,14 +124,14 @@ const KitForm = () => {
     const file = e.target.files[0];
     setCoverImg(file);
   };
-  
+
   return (
     <div className="kit-form-container">
-      <h1>Add a kit, hit some drums!</h1>
       <form className="kit-form" onSubmit={submitForm}>
         <div className="kit-form__kit-fields">
-          <div>
-            <label htmlFor="name">Kit name: </label>
+          <div className="kit-fields__element">
+            <h1>add a kit, hit some drums!</h1>
+            <label htmlFor="name">kit name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -133,8 +139,8 @@ const KitForm = () => {
               placeholder="Name your kit"
             />
           </div>
-          <div>
-            <label htmlFor="select-genre">Genre:</label>
+          <div className="kit-fields__element">
+            <label htmlFor="select-genre">genre</label>
             <select
               name="genre"
               value={genreId}
@@ -149,7 +155,8 @@ const KitForm = () => {
                   </option>
                 ))}
             </select>
-            <div>
+            <div className="kit-fields__element">
+              <label htmlFor="cover-img">cover image</label>
               <input
                 type="file"
                 accept="cover_img_url/*"
@@ -159,10 +166,10 @@ const KitForm = () => {
           </div>
         </div>
         <div className="kit-form__sample-fields-container">
-          <h3>Add Samples</h3>
+          <h3>ADD SAMPLES</h3>
           {samples.map((sample, idx) => (
             <SampleFormField
-              // onChange={(data) => editSample(idx, data)}
+              key={sample.id}
               editSample={editSample}
               sample={sample}
               idx={idx}
