@@ -17,11 +17,9 @@ const DrumMachine = () => {
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
-      console.log(e.keyCode);
       const currentDrumKey = drumKey[e.keyCode];
       if (currentDrumKey) {
         const audio = new Audio(currentDrumKey.selectedSample);
-        console.log("Clicking button", audio, currentDrumKey);
         audio.play();
       }
       // const audioElement = document.createElement(audio);
@@ -48,14 +46,6 @@ const DrumMachine = () => {
                     ...drumKey,
                     [65]: { ...drumKey[65], selectedSample: e.target.value },
                   });
-                  console.log(
-                    "HERE",
-                    {
-                      ...drumKey,
-                      [65]: { selectedSample: e.target.value, ...drumKey[65] },
-                    },
-                    e.target.value
-                  );
                 }}
               >
                 <option selected="selected" value="0" disabled>

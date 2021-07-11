@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from app.models import Kit, db, Sample
 from app.aws import(upload_file_to_s3, allowed_file, get_unique_filename)
 from flask_login import login_required, current_user
-from app.forms import KitForm
+from app.forms import KitForm, EditKitForm
 import json
 
 kit_routes = Blueprint("kits", __name__)
@@ -49,7 +49,7 @@ def upload_cover_img():
 
     cover_img_url = request.files["cover_img_url"]
     audio_urls = request.files.getlist("audio_url")
-    
+
     if not allowed_file(cover_img_url.filename):
         return {"errors": "file type not supported: must be a pdf, png, jpg, jpeg, or gif"}, 400
 
@@ -58,12 +58,11 @@ def upload_cover_img():
     for audio_url in audio_urls:
         if not allowed_file(audio_url.filename):
             return {"errors": "file type not supported: must be a wav, mp3, or aiff"}, 400
-        
+
         audio_url.filename = get_unique_filename(audio_url.filename)
         audio_uploads.append(upload_file_to_s3(audio_url))
-    
+
     cover_img_url.filename = get_unique_filename(cover_img_url.filename)
-    # audio_urls.filename = get_unique_filename(audio_urls.filename)
 
     upload = upload_file_to_s3(cover_img_url)
 
@@ -72,7 +71,7 @@ def upload_cover_img():
     for audio_upload in audio_uploads:
         if "url" not in audio_upload:
             return audio_upload, 400
-    
+
     url = upload["url"]
 
     form = KitForm()
@@ -89,7 +88,6 @@ def upload_cover_img():
     db.session.commit()
 
     sample_list = json.loads(form.data["samples"])
-    print("SAMPLE LIST", sample_list)
     for i in range(len(sample_list)):
         sample = Sample(
             name=sample_list[i]["name"],
@@ -97,9 +95,33 @@ def upload_cover_img():
             kit_id=new_kit.id,
             audio_url=audio_uploads[i]["url"]
         )
-        print("SAMPLE", sample)
 
         db.session.add(sample)
 
     db.session.commit()
     return new_kit.to_dict()
+
+# PUT /api/kits/<int:id>
+
+
+@kit_routes.route("/<int:id>", methods=["PATCH"])
+@login_required
+def edit_kit(id):
+    form = EditKitForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    cover_img_url = request.files["cover_img_url"]
+    if not allowed_file(cover_img_url.filename):
+        return {"errors": "file type not supported: must be a pdf, png, jpg, jpeg, or gif"}, 400
+    cover_img_url.filename = get_unique_filename(cover_img_url.filename)
+    upload = upload_file_to_s3(cover_img_url)
+    if "url" not in upload:
+        return upload, 400
+    url = upload["url"]
+
+    kit = Kit.query.get(id)
+
+    kit.name = form.data["name"]
+    kit.genre_id = form.data["genre_id"]
+    kit.cover_img_url = url
+    db.session.commit()
+    return {"kit": kit.to_dict()}

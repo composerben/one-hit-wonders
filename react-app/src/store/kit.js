@@ -2,6 +2,7 @@
 const GET_KITS = "kit/GET_KITS";
 const POST_KIT = "kit/POST_KIT";
 const DELETE_KIT = "kit/DELETE_KIT";
+const EDIT_KIT = "kit/EDIT_KIT";
 
 //action creators
 const getKits = (kits) => ({
@@ -17,6 +18,11 @@ const postKit = (kit) => ({
 const deleteKit = (kitId) => ({
   type: DELETE_KIT,
   kitId,
+});
+
+const editKit = (kit) => ({
+  type: EDIT_KIT,
+  kit,
 });
 
 export const getAllKits = () => async (dispatch) => {
@@ -45,10 +51,18 @@ export const postOneKit = (data) => async (dispatch) => {
 
   if (res.ok) {
     const kit = await res.json();
-
     dispatch(postKit(kit));
     return kit;
   }
+};
+
+export const editOneKit = (kitId, body) => async (dispatch) => {
+  const res = await fetch(`/api/kits/${kitId}`, {
+    method: "PATCH",
+    body: body,
+  });
+  const data = await res.json();
+  dispatch(editKit(data.kit));
 };
 
 export const deleteOneKit = (kitId) => async (dispatch) => {
@@ -84,8 +98,11 @@ export default function kitReducer(state = initialState, action) {
     case DELETE_KIT: {
       const newState = { ...state };
       delete newState.byId[action.kitId];
-      console.log("NEW STATE", newState);
-      console.log("KIT ID", action.kitId);
+      return newState;
+    }
+    case EDIT_KIT: {
+      const newState = { ...state };
+      newState.byId[action.kit.id] = action.kit;
       return newState;
     }
     default:

@@ -52,7 +52,9 @@ const SampleFormField = ({ editSample, idx }) => {
             setDrumTypeId(() => parseInt(e.target.value));
           }}
         >
-          <option value="0" disabled>select drum</option>
+          <option value="0" disabled>
+            select drum
+          </option>
           {drumTypes &&
             drumTypes.map((type) => (
               <option key={type.id} value={type.id}>
@@ -106,7 +108,6 @@ const KitForm = () => {
 
   function submitForm(e) {
     e.preventDefault();
-    debugger;
     const formData = new FormData();
     formData.append("cover_img_url", coverImg);
     formData.append("name", name);

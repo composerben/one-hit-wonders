@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getCurrentKit } from "../../store/kit";
+import { getCurrentKit, editOneKit } from "../../store/kit";
 import { getAllGenres } from "../../store/genre";
 import "./edit-kit-form.css";
 
@@ -11,10 +11,10 @@ const EditKitForm = () => {
     Object.values(state.genreReducer.byId)
   );
   const currentKit = useSelector((state) => state.kitReducer.byId[id]);
-  const [currentName, setCurrentName] = useState(null);
+  const [currentName, setCurrentName] = useState(currentKit?.name);
 
-  const [currentGenreId, setCurrentGenreId] = useState(null);
-  const [coverImg, setCoverImg] = useState(null);
+  const [currentGenreId, setCurrentGenreId] = useState(currentKit?.genre_id);
+  const [coverImg, setCoverImg] = useState(currentKit?.cover_img_url);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,23 +29,34 @@ const EditKitForm = () => {
   useEffect(() => {
     dispatch(getCurrentKit(id));
     dispatch(getAllGenres());
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const updateImage = (e) => {
     const file = e.target.files[0];
     setCoverImg(file);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("cover_img_url", coverImg);
+    formData.append("genre_id", currentGenreId);
+    formData.append("name", currentName);
+    dispatch(editOneKit(id, formData));
+    history.push(`/users/${currentKit.user_id}`);
+  };
+
   return (
-    <form className="edit-kit-form">
+    <form className="edit-kit-form" onSubmit={handleSubmit}>
       <div className="edit-kit-form__element">
         <h1>Update Kit</h1>
         <label htmlFor="name">new name: </label>
         <input
           type="text"
           value={currentName}
-          // placeholder={currentKit?.name}
-          onChange={(e) => setCurrentName(e.target.value)}
+          onChange={(e) => {
+            setCurrentName(e.target.value);
+          }}
         />
       </div>
       <div className="edit-kit-form__element">
@@ -53,7 +64,7 @@ const EditKitForm = () => {
         <select
           name="genre"
           value={currentGenreId}
-          onChange={(e) => parseInt(setCurrentGenreId(e.target.value))}
+          onChange={(e) => setCurrentGenreId(parseInt(e.target.value))}
         >
           {allGenres?.map((genre) => (
             <option key={genre.id} value={genre.id}>
@@ -64,8 +75,9 @@ const EditKitForm = () => {
       </div>
       <div className="edit-kit-form__element">
         <label htmlFor="kit-photo">new cover image: </label>
-        <input type="file" accept="coer_img_url/*" onChange={updateImage} />
+        <input type="file" accept="cover_img_url/*" onChange={updateImage} />
       </div>
+      <button>Submit Edits</button>
     </form>
   );
 };

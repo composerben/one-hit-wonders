@@ -44,7 +44,7 @@ function KitPage({ setLoaded }) {
   });
   return (
     <div className="sample-container">
-      <img src={currentKit?.cover_img_url}></img>
+      <img alt="kit-cover" src={currentKit?.cover_img_url}></img>
       <div className="sample-components-container">{kitSampleComponents}</div>
     </div>
   );

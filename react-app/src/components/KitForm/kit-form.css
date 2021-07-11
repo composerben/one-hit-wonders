@@ -28,7 +28,6 @@
 .sample-fields p {
   color: white;
   margin-left: 10px;
-
 }
 
 .kit-fields__element,
@@ -58,11 +57,12 @@ select {
   height: 20px;
 }
 
-.sample-fields__element input, select {
+.sample-fields__element input,
+select {
   width: 60%;
   background-color: black;
+  color: white;
   float: right;
-
 }
 
 .kit-form__sample-fields-container h3,
