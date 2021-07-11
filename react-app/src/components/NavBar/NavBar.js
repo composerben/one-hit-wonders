@@ -9,7 +9,7 @@ const NavBar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar__element">
+      <div className="logo">
         <NavLink to="/" exact={true}>
           <img
             alt="Site Logo"
@@ -17,25 +17,25 @@ const NavBar = () => {
           ></img>
         </NavLink>
       </div>
-      {!currentUser && (
-        <>
-          <div className="navbar__element">
-            <NavLink to="/login" exact={true}>
-              Login
-            </NavLink>
-          </div>
-          <div className="navbar__element">
-            <NavLink to="/sign-up" exact={true}>
-              Sign Up
-            </NavLink>
-          </div>
-        </>
-      )}
       <div className="navbar__element">
         <NavLink to="/kits" exact={true}>
           all the stuff
         </NavLink>
       </div>
+      {!currentUser && (
+        <>
+          <div className="navbar__element">
+            <NavLink to="/login" exact={true}>
+              login
+            </NavLink>
+          </div>
+          <div className="navbar__element">
+            <NavLink to="/sign-up" exact={true}>
+              sign up
+            </NavLink>
+          </div>
+        </>
+      )}
       {currentUser && (
         <>
           <div className="navbar__element">
