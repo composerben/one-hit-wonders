@@ -1,36 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentPageUser } from "../../store/user";
+import { getKitsByUserId } from "../../store/kit";
 import Kit from "../Kit/Kit";
 
 import "./user.css";
 
 function User() {
-  const [deleted, setDeleted] = useState(false);
   const dispatch = useDispatch();
   const { userId } = useParams();
   const user = useSelector((state) => state.userReducer.byId[userId]);
-  const userKits = user?.kits;
+  const userKits = useSelector((state) =>
+    Object.values(state.kitReducer.byId || [])
+  );
 
   useEffect(() => {
     if (!userId) {
       return;
     }
     dispatch(getCurrentPageUser(userId));
-    setDeleted(!deleted);
-  }, [userId, dispatch, deleted]);
+    dispatch(getKitsByUserId(userId));
+  }, [userId, dispatch]);
 
   if (!user) {
     return null;
   }
 
   const userKitComponents = userKits?.map((kit) => {
-    return (
-      <div key={kit.id}>
-        <Kit kit={kit} setDeleted={setDeleted} />
-      </div>
-    );
+    return <Kit key={kit.id} kit={kit} />;
   });
 
   return (

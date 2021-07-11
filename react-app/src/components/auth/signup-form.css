@@ -1,0 +1,44 @@
+.signup-form {
+    box-sizing: border-box;
+    width: 40%;
+    
+    margin: 10% auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .signup-form__element {
+    padding: 0.5rem;
+    font-size: 14pt;
+  }
+  
+  .signup-form__element label {
+    display: inline-block;
+    font-family: "Tourney", cursive;
+    color: white;
+  }
+  
+  .signup-form__element input {
+    width: 60%;
+    background-color: black;
+    color: white;
+    float: right;
+    height: 20px;
+  } 
+
+  .signup-buttons {
+      margin-left: 5px;
+  }
+  
+  @media (max-width: 1150px) {
+    .signup-form__element label {
+      display: none;
+    }
+  
+    .signup-form__element input {
+      width: 75%;
+      margin-left: 5px;
+      float: left;
+    }
+  }
+  

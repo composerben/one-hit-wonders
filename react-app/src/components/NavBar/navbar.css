@@ -8,9 +8,19 @@
   font-size: 16pt;
 }
 
+.navbar__element {
+  margin-right: 10px;
+}
+
 .navbar__element a {
   color: white;
   text-decoration: unset;
+  transition: color 0.5s, font-size 0.5s;
+}
+
+.navbar__element a:hover {
+  color: red;
+  font-size: larger;
 }
 
 .navbar img {

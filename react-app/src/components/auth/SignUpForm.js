@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signUp } from "../../store/session";
+import { signUp, login } from "../../store/session";
+import "./signup-form.css";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -34,50 +35,64 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(login("demo@aa.io", "password"));
+  };
+
   if (user) {
     return <Redirect to="/" />;
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <label>User Name</label>
+    <form className="signup-form" onSubmit={onSignUp}>
+      <div className="signup-form__element">
+        <label>username</label>
         <input
           type="text"
           name="username"
+          placeholder="username"
           onChange={updateUsername}
           value={username}
         ></input>
       </div>
-      <div>
-        <label>Email</label>
+      <div className="signup-form__element">
+        <label>email</label>
         <input
           type="text"
           name="email"
+          placeholder="email"
           onChange={updateEmail}
           value={email}
         ></input>
       </div>
-      <div>
-        <label>Password</label>
+      <div className="signup-form__element">
+        <label>password</label>
         <input
           type="password"
           name="password"
+          placeholder="password"
           onChange={updatePassword}
           value={password}
         ></input>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div className="signup-form__element">
+        <label>repeat password</label>
         <input
           type="password"
           name="repeat_password"
+          placeholder="repeat password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <div className="signup-buttons">
+        <button type="submit">SIGN UP</button>
+        <button className="demo-button" onClick={demoLogin}>
+          DEMO USER
+        </button>
+      </div>
     </form>
   );
 };

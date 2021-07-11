@@ -13,3 +13,84 @@
   border: 3px solid black;
 }
 
+.kit-form {
+  box-sizing: border-box;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sample-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.sample-fields p {
+  color: white;
+  margin-left: 10px;
+}
+
+.kit-fields__element,
+.sample-fields__element {
+  padding: 0.5rem;
+  font-size: 14pt;
+}
+
+.kit-fields__element label {
+  display: inline-block;
+  font-family: "Tourney", cursive;
+  color: white;
+}
+
+.sample-fields__element {
+  display: inline-block;
+  font-family: "Tourney", cursive;
+  color: white;
+}
+
+.kit-fields__element input,
+select {
+  width: 60%;
+  background-color: black;
+  color: white;
+  float: right;
+  height: 20px;
+}
+
+.sample-fields__element input,
+select {
+  width: 60%;
+  background-color: black;
+  color: white;
+  float: right;
+}
+
+.kit-form__sample-fields-container h3,
+.kit-fields__element h1 {
+  text-align: center;
+  font-family: "Tourney", cursive;
+}
+
+@media (max-width: 950px) {
+  .kit-fields__element label {
+    display: none;
+  }
+
+  .sample-fields__element label {
+    display: none;
+  }
+
+  .kit-fields__element input,
+  select {
+    width: 75%;
+    /* margin-left: 5px; */
+    float: left;
+  }
+
+  .sample-fields__element input,
+  select {
+    width: 75%;
+    /* margin-left: 5px; */
+    float: left;
+  }
+}
