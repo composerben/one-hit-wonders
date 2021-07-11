@@ -14,22 +14,27 @@ const postKit = (kit) => ({
   kit,
 });
 
-const deleteKit = (kit) => ({
+const deleteKit = (kitId) => ({
   type: DELETE_KIT,
-  kit,
+  kitId,
 });
 
 export const getAllKits = () => async (dispatch) => {
-  const response = await fetch("/api/kits")
-  const data = await response.json()
-  dispatch(getKits(data.kits))
-}
+  const response = await fetch("/api/kits");
+  const data = await response.json();
+  dispatch(getKits(data.kits));
+};
 
 export const getCurrentKit = (kitId) => async (dispatch) => {
-  // debugger;
   const response = await fetch(`/api/kits/${kitId}`);
   const data = await response.json();
   dispatch(getKits([data.kit]));
+};
+
+export const getKitsByUserId = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/kits/users/${userId}`);
+  const data = await response.json();
+  dispatch(getKits(data.kits));
 };
 
 export const postOneKit = (data) => async (dispatch) => {
@@ -78,7 +83,9 @@ export default function kitReducer(state = initialState, action) {
     }
     case DELETE_KIT: {
       const newState = { ...state };
-      delete newState.byId[action.kit.id];
+      delete newState.byId[action.kitId];
+      console.log("NEW STATE", newState);
+      console.log("KIT ID", action.kitId);
       return newState;
     }
     default:

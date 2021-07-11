@@ -6,8 +6,28 @@ import "./drum-machine.css";
 const DrumMachine = () => {
   const dispatch = useDispatch();
   const drumTypes = useSelector((state) =>
-    Object.values(state.drumTypeReducer.byId)
+    Object.values(state?.drumTypeReducer.byId)
   );
+  const [drumKey, setDrumKey] = useState({
+    65: {
+      name: "Kick",
+      selectedSample: null,
+    },
+  });
+
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      console.log(e.keyCode);
+      const currentDrumKey = drumKey[e.keyCode];
+      if (currentDrumKey) {
+        const audio = new Audio(currentDrumKey.selectedSample);
+        console.log("Clicking button", audio, currentDrumKey);
+        audio.play();
+      }
+      // const audioElement = document.createElement(audio);
+      // audioElement.play();
+    });
+  }, [drumKey]);
 
   useEffect(() => {
     dispatch(getAllDrumTypes());
@@ -20,12 +40,31 @@ const DrumMachine = () => {
           {drumTypes?.map((drumType) => (
             <div key={drumType.id} className="drum-selector">
               <label htmlFor={drumType.name}>{drumType.name}: </label>
-              <select className="dropdown" name={drumType.name}>
-                <option value="0" disabled>
+              <select
+                className="dropdown"
+                name={drumType.name}
+                onChange={(e) => {
+                  setDrumKey({
+                    ...drumKey,
+                    [65]: { ...drumKey[65], selectedSample: e.target.value },
+                  });
+                  console.log(
+                    "HERE",
+                    {
+                      ...drumKey,
+                      [65]: { selectedSample: e.target.value, ...drumKey[65] },
+                    },
+                    e.target.value
+                  );
+                }}
+              >
+                <option selected="selected" value="0" disabled>
                   Pick a {drumType.name}
                 </option>
                 {drumType.samples?.map((sample) => (
-                  <option key={sample.id}>{sample.name}</option>
+                  <option key={sample.id} value={sample.audio_url}>
+                    {sample.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -63,7 +102,7 @@ const DrumMachine = () => {
         <div className="white-keys-container">
           <div className="white-keys">
             <div data-key="65" className="drum">
-              <kbd onClick={(e) => console.log(e)}>A</kbd>
+              <kbd>A</kbd>
               <p>Kick</p>
             </div>
             <div data-key="83" className="drum">

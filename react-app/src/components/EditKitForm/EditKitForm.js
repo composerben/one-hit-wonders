@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrentKit } from "../../store/kit";
 import { getAllGenres } from "../../store/genre";
+import "./edit-kit-form.css";
 
 const EditKitForm = () => {
   const { id } = useParams();
@@ -10,11 +11,20 @@ const EditKitForm = () => {
     Object.values(state.genreReducer.byId)
   );
   const currentKit = useSelector((state) => state.kitReducer.byId[id]);
-  const [currentName, setCurrentName] = useState(currentKit?.name);
-  const [currentGenreId, setCurrentGenreId] = useState(0);
+  const [currentName, setCurrentName] = useState(null);
+
+  const [currentGenreId, setCurrentGenreId] = useState(null);
   const [coverImg, setCoverImg] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    if (currentKit) {
+      setCurrentName(currentKit.name);
+      setCurrentGenreId(currentKit.genre_id);
+      setCoverImg(currentKit.cover_img_url);
+    }
+  }, [currentKit]);
 
   useEffect(() => {
     dispatch(getCurrentKit(id));
@@ -34,7 +44,7 @@ const EditKitForm = () => {
         <input
           type="text"
           value={currentName}
-          placeholder={currentKit?.name}
+          // placeholder={currentKit?.name}
           onChange={(e) => setCurrentName(e.target.value)}
         />
       </div>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteOneKit } from "../../store/kit";
 import "./kit.css";
 
-function Kit({ kit, setDeleted }) {
+function Kit({ kit }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedInUser = useSelector((state) => state.session.user);
@@ -15,7 +15,6 @@ function Kit({ kit, setDeleted }) {
 
   const onDelete = async (kit) => {
     await dispatch(deleteOneKit(kit.id));
-    setDeleted((prev) => !prev);
   };
 
   return (
