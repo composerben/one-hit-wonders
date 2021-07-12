@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentKit } from "../../store/kit";
@@ -9,6 +9,7 @@ import "./kit-page.css";
 function KitPage() {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const { kitId } = useParams();
   const currentKit = useSelector((state) => state.kitReducer.byId[kitId]);
   const kitSamples = useSelector((state) =>
