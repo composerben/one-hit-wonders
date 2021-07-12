@@ -6,7 +6,7 @@ import Sample from "../Sample/Sample";
 import { deleteOneSample, getSamplesByKit } from "../../store/sample";
 import "./kit-page.css";
 
-function KitPage({ setLoaded }) {
+function KitPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { kitId } = useParams();
@@ -30,7 +30,6 @@ function KitPage({ setLoaded }) {
 
   const onDelete = async (sample) => {
     await dispatch(deleteOneSample(sample.id));
-    setLoaded((prev) => !prev);
   };
 
   const kitSampleComponents = kitSamples?.map((sample) => {

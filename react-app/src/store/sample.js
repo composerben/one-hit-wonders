@@ -2,9 +2,9 @@ const DELETE_SAMPLE = "sample/DELETE_SAMPLE";
 const GET_SAMPLES = "sample/GET_SAMPLES";
 const EDIT_SAMPLE = "sample/EDIT_SAMPLE";
 
-const deleteSample = (sample) => ({
+const deleteSample = (sampleId) => ({
   type: DELETE_SAMPLE,
-  sample,
+  sampleId,
 });
 
 const getSamples = (samples) => ({
@@ -64,7 +64,7 @@ export default function sampleReducer(state = initialState, action) {
     }
     case DELETE_SAMPLE: {
       const newState = { ...state };
-      delete newState.byId[action.sample.id];
+      delete newState.byId[action.sampleId];
       return newState;
     }
     case EDIT_SAMPLE: {

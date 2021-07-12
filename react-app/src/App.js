@@ -52,7 +52,7 @@ function App() {
           <SplashPage />
         </Route>
         <Route path="/kits/:kitId" exact={true}>
-          <KitPage setLoaded={setLoaded} />
+          <KitPage />
         </Route>
         <Route path="/new-kit" exact={true}>
           <KitForm />
