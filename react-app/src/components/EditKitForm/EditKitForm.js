@@ -77,6 +77,9 @@ const EditKitForm = () => {
         <input type="file" accept="cover_img_url/*" onChange={updateImage} />
       </div>
       <button>Submit Edits</button>
+      <button onClick={() => history.push(`/users/${currentKit.user_id}`)}>
+        Cancel
+      </button>
     </form>
   );
 };

@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentKit } from "../../store/kit";
 import Sample from "../Sample/Sample";
-import { deleteOneSample } from "../../store/sample";
+import { deleteOneSample, getSamplesByKit } from "../../store/sample";
 import "./kit-page.css";
 
 function KitPage({ setLoaded }) {
@@ -11,7 +11,9 @@ function KitPage({ setLoaded }) {
   const history = useHistory();
   const { kitId } = useParams();
   const currentKit = useSelector((state) => state.kitReducer.byId[kitId]);
-  const kitSamples = currentKit?.samples;
+  const kitSamples = useSelector((state) =>
+    Object.values(state.sampleReducer.byId || [])
+  );
   const loggedInUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
@@ -19,6 +21,7 @@ function KitPage({ setLoaded }) {
       return;
     }
     dispatch(getCurrentKit(kitId));
+    dispatch(getSamplesByKit(kitId));
   }, [kitId, dispatch]);
 
   if (!currentKit) {
