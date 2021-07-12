@@ -1,0 +1,47 @@
+.edit-sample-form {
+    box-sizing: border-box;
+    width: 40%;
+  
+    margin: 10% auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-sample-form__element {
+    padding: 0.5rem;
+    font-size: 14pt;
+  }
+  
+  .edit-sample-form__element h1 {
+    text-align: center;
+    font-family: "Tourney", cursive;
+  }
+  
+  .edit-sample-form__element label {
+    display: inline-block;
+    font-family: "Tourney", cursive;
+    color: white;
+  }
+  
+  .edit-sample-form__element input,
+  select {
+    width: 60%;
+    background-color: black;
+    color: white;
+    float: right;
+    height: 20px;
+  }
+  
+  @media (max-width: 950px) {
+    .edit-sample-form__element label {
+      display: none;
+    }
+  
+    .edit-sample-form__element input,
+    select {
+      width: 75%;
+      margin-left: 5px;
+      float: left;
+    }
+  }
+  

@@ -7,16 +7,15 @@ import "./edit-kit-form.css";
 
 const EditKitForm = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const allGenres = useSelector((state) =>
     Object.values(state.genreReducer.byId)
   );
   const currentKit = useSelector((state) => state.kitReducer.byId[id]);
   const [currentName, setCurrentName] = useState(currentKit?.name);
-
   const [currentGenreId, setCurrentGenreId] = useState(currentKit?.genre_id);
   const [coverImg, setCoverImg] = useState(currentKit?.cover_img_url);
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     if (currentKit) {
@@ -78,6 +77,9 @@ const EditKitForm = () => {
         <input type="file" accept="cover_img_url/*" onChange={updateImage} />
       </div>
       <button>Submit Edits</button>
+      <button onClick={() => history.push(`/users/${currentKit.user_id}`)}>
+        Cancel
+      </button>
     </form>
   );
 };

@@ -12,6 +12,7 @@ import KitForm from "./components/KitForm/KitForm";
 import DrumMachine from "./components/DrumMachine/DrumMachine";
 import SplashPage from "./components/SplashPage/SplashPage";
 import EditKitForm from "./components/EditKitForm/EditKitForm";
+import EditSampleForm from "./components/EditSampleForm/EditSampleForm";
 
 import { authenticate } from "./store/session";
 
@@ -61,6 +62,9 @@ function App() {
         </Route>
         <Route path="/edit-kit/:id" exact={true}>
           <EditKitForm />
+        </Route>
+        <Route path="/edit-sample/:id" exact={true}>
+          <EditSampleForm />
         </Route>
         <h1>404: Not Found</h1>
       </Switch>

@@ -101,9 +101,8 @@ def upload_cover_img():
     db.session.commit()
     return new_kit.to_dict()
 
-# PUT /api/kits/<int:id>
 
-
+# PATCH /api/kits/<int:id>
 @kit_routes.route("/<int:id>", methods=["PATCH"])
 @login_required
 def edit_kit(id):
