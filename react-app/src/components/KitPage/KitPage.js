@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentKit } from "../../store/kit";
 import Sample from "../Sample/Sample";
@@ -8,6 +8,7 @@ import "./kit-page.css";
 
 function KitPage({ setLoaded }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { kitId } = useParams();
   const currentKit = useSelector((state) => state.kitReducer.byId[kitId]);
   const kitSamples = currentKit?.samples;
@@ -35,7 +36,9 @@ function KitPage({ setLoaded }) {
         <Sample sample={sample} />
         {loggedInUser.id === currentKit.user_id && (
           <>
-            <button>Edit</button>
+            <button onClick={() => history.push(`/edit-sample/${sample.id}`)}>
+              Edit
+            </button>
             <button onClick={() => onDelete(sample)}>Delete</button>
           </>
         )}

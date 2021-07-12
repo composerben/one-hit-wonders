@@ -14,6 +14,13 @@ def kit_samples(kit_id):
     return {"samples": [sample.to_dict() for sample in samples]}
 
 
+# GET /api/samples/<int:id>
+@sample_routes.route("/<int:id>")
+def single_sample(id):
+    sample = Sample.query.get(id)
+    return {"sample": sample.to_dict()}
+
+
 # DELETE /api/samples/<int:id>
 @sample_routes.route("/<int:id>", methods=["DELETE"])
 def delete_sample(id):
