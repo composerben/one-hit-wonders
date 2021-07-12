@@ -1,0 +1,23 @@
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  padding: 10px;
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+}
+
+.footer img {
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+}
+
+.footer h3 {
+  color: white;
+  padding: 10px;
+  font-family: "Tourney", cursive;
+}
