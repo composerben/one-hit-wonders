@@ -7,6 +7,7 @@ import "./signup-form.css";
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,10 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password));
+      if (data.errors) {
+        setErrors(data.errors);
+      }
     }
   };
 
@@ -46,6 +50,11 @@ const SignUpForm = () => {
 
   return (
     <form className="signup-form" onSubmit={onSignUp}>
+      <div className="errors-container">
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
       <div className="signup-form__element">
         <label>username</label>
         <input
