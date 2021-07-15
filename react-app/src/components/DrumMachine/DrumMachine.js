@@ -13,6 +13,46 @@ const DrumMachine = () => {
       name: "Kick",
       selectedSample: null,
     },
+    87: {
+      name: "Click",
+      selectedSample: null,
+    },
+    83: {
+      name: "Snare",
+      selectedSample: null,
+    },
+    69: {
+      name: "Clap",
+      selectedSample: null,
+    },
+    68: {
+      name: "High Tom",
+      selectedSample: null,
+    },
+    70: {
+      name: "Low Tom",
+      selectedSample: null,
+    },
+    84: {
+      name: "Hi-hat",
+      selectedSample: null,
+    },
+    71: {
+      name: "Beep",
+      selectedSample: null,
+    },
+    72: {
+      name: "Vocal",
+      selectedSample: null,
+    },
+    85: {
+      name: "Crash",
+      selectedSample: null,
+    },
+    73: {
+      name: "Sub",
+      selectedSample: null,
+    },
   });
 
   useEffect(() => {
