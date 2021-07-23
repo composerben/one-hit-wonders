@@ -5,6 +5,18 @@ import "./drum-machine.css";
 
 const DrumMachine = () => {
   const dispatch = useDispatch();
+  // const [kick, setKick] = useState("")
+  // const [click, setClick] = useState("")
+  // const [snare, setSnare] = useState("")
+  // const [clap, setClap] = useState("")
+  // const [highTom, setHighTom] = useState("")
+  // const [lowTom, setLowTom] = useState("")
+  // const [hiHat, setHiHat] = useState("")
+  // const [beep, setBeep] = useState("")
+  // const [ride, setRide] = useState("")
+  // const [vocal, setVocal] = useState("")
+  // const [crash, setCrash] = useState("")
+  // const [sub, setSub] = useState("")
   const drumTypes = useSelector((state) =>
     Object.values(state?.drumTypeReducer.byId)
   );
@@ -49,15 +61,18 @@ const DrumMachine = () => {
       name: "Crash",
       selectedSample: null,
     },
-    73: {
+    74: {
       name: "Sub",
       selectedSample: null,
     },
   });
 
+  const drumKeyCodes = Object.keys(drumKey);
+
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
       const currentDrumKey = drumKey[e.keyCode];
+      console.log(e.keyCode);
       if (currentDrumKey) {
         const audio = new Audio(currentDrumKey.selectedSample);
         audio.play();
@@ -65,6 +80,7 @@ const DrumMachine = () => {
       // const audioElement = document.createElement(audio);
       // audioElement.play();
     });
+    console.log(drumKeyCodes);
   }, [drumKey]);
 
   useEffect(() => {
@@ -75,16 +91,20 @@ const DrumMachine = () => {
     <div className="page-contents">
       <div className="sidebar-container">
         <div className="sidebar">
-          {drumTypes?.map((drumType) => (
+          {drumTypes?.map((drumType, idx) => (
             <div key={drumType.id} className="drum-selector">
               <label htmlFor={drumType.name}>{drumType.name}: </label>
               <select
                 className="dropdown"
                 name={drumType.name}
                 onChange={(e) => {
+                  console.log("DRUM KEY CODES AT IDX", drumKeyCodes[idx]);
                   setDrumKey({
-                    ...drumKey,
-                    [65]: { ...drumKey[65], selectedSample: e.target.value },
+                    // ...drumKey,
+                    [drumKeyCodes[idx]]: {
+                      ...drumKey[drumKeyCodes[idx]],
+                      selectedSample: e.target.value,
+                    },
                   });
                 }}
               >
@@ -155,7 +175,7 @@ const DrumMachine = () => {
               <kbd>H</kbd>
               <p>Vocal</p>
             </div>
-            <div data-key="73" className="drum">
+            <div data-key="74" className="drum">
               <kbd>J</kbd>
               <p>Sub</p>
             </div>

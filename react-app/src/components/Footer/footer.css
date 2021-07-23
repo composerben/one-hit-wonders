@@ -5,7 +5,7 @@
   align-items: center;
   background-color: black;
   padding: 10px;
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100vw;
 }
