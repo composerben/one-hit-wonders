@@ -75,10 +75,8 @@ const DrumMachine = () => {
       console.log(e.keyCode);
       if (currentDrumKey) {
         const audio = new Audio(currentDrumKey.selectedSample);
-        audio.play();
+        // audio.play();
       }
-      // const audioElement = document.createElement(audio);
-      // audioElement.play();
     });
     console.log(drumKeyCodes);
   }, [drumKey]);
@@ -99,16 +97,18 @@ const DrumMachine = () => {
                 name={drumType.name}
                 onChange={(e) => {
                   console.log("DRUM KEY CODES AT IDX", drumKeyCodes[idx]);
+                  console.log("E TARGET VALUE", e.target.value);
                   setDrumKey({
-                    // ...drumKey,
+                    ...drumKey,
                     [drumKeyCodes[idx]]: {
-                      ...drumKey[drumKeyCodes[idx]],
+                      // drumKey[drumKeyCodes[idx]],
                       selectedSample: e.target.value,
                     },
                   });
+                  console.log("DRUM KEY", drumKey);
                 }}
               >
-                <option selected="selected" value="0" disabled>
+                <option selected value="0" disabled>
                   Pick a {drumType.name}
                 </option>
                 {drumType.samples?.map((sample) => (

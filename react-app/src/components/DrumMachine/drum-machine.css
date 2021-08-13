@@ -69,9 +69,6 @@ kbd {
 
 .white-keys-container {
   display: flex;
-  /* flex-direction: row; */
-  /* border: 3px solid rgb(227, 220, 18); */
-  /* width: 100vw; */
 }
 
 .white-keys {
