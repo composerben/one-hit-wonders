@@ -8,6 +8,7 @@ const SplashPage = () => {
       <h3 className="subtitle">
         The site dedicated to making noise and bothering your neighbors
       </h3>
+      <img src="https://one-hit-wonders.s3.us-west-2.amazonaws.com/site_capture.png" className="screenshot"></img>
     </>
   );
 };
