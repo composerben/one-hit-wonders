@@ -53,6 +53,10 @@ const DrumMachine = () => {
       name: "Beep",
       selectedSample: null,
     },
+    89: {
+      name: "Ride",
+      selectedSample: null,
+    },
     72: {
       name: "Vocal",
       selectedSample: null,
@@ -67,15 +71,16 @@ const DrumMachine = () => {
     },
   });
 
-  const drumKeyCodes = Object.keys(drumKey);
+  const drumKeyCodes = [65, 87, 83, 69, 68, 70, 84, 71, 89, 72, 85, 74];
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
       const currentDrumKey = drumKey[e.keyCode];
+      console.log("DRUM KEY USE EFFECT", drumKey);
       console.log(e.keyCode);
       if (currentDrumKey) {
         const audio = new Audio(currentDrumKey.selectedSample);
-        // audio.play();
+        audio.play();
       }
     });
     console.log(drumKeyCodes);
