@@ -8,8 +8,26 @@
   font-size: 40pt;
 }
 
+.site-info-container {
+  display: flex;
+  padding: 20px;
+  margin-left: 3rem;
+}
+
+.instructions {
+  color: white;
+  font-family: "Tourney", cursive;
+  font-size: large;
+}
+
+.fun-instruction {
+  color: red;
+}
+
 .screenshot {
-  width: 700px;
-  border: 2px solid rgba(255, 255, 255, 0.714);
+  margin-left: 3rem;
+  width: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.817);
   border-radius: 10px;
+  box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.584);
 }
