@@ -111,3 +111,8 @@ const drumKeyCodes = [65, 87, 83, 69, 68, 70, 84, 71, 89, 72, 85, 74];
           ))}
  ```
  
+This eliminated the need to create 12 separate local state variables and controlled inputs in the React component.
+## Future Features
+* Downloadable kits/samples
+* Favorites/Reviews
+* Search feature, to search by name, genre, etc.
