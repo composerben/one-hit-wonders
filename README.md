@@ -22,7 +22,8 @@ I decided to create a solution. Built with drum samples in mind, One-Hit-Wonders
 created by other users, and also contains a playable drum kit, so you can try the samples out for yourself with having to buy them, download them, or even leave
 the site!
 <img width="649" alt="site-form" src="https://user-images.githubusercontent.com/56130322/129798987-d3bacb8a-5412-4d14-88ed-988a016caecf.png">
-<img width="751" alt="drum-kit" src="https://user-images.githubusercontent.com/56130322/129799018-28173702-7acd-4c63-b9d8-9f51cb83500a.png">
+<img width="752" alt="drum-kit" src="https://user-images.githubusercontent.com/56130322/129799180-04daaa33-9390-478d-b453-7c389163b87d.png">
+
 
 
 
