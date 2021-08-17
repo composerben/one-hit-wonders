@@ -21,4 +21,8 @@ As a musician who's purchased more sample libraries than he cares to admit, and 
 I decided to create a solution. Built with drum samples in mind, One-Hit-Wonders allows for the creation of a kit a drump samples, let's you listen to the samples 
 created by other users, and also contains a playable drum kit, so you can try the samples out for yourself with having to buy them, download them, or even leave
 the site!
+<img width="649" alt="site-form" src="https://user-images.githubusercontent.com/56130322/129798987-d3bacb8a-5412-4d14-88ed-988a016caecf.png">
+<img width="751" alt="drum-kit" src="https://user-images.githubusercontent.com/56130322/129799018-28173702-7acd-4c63-b9d8-9f51cb83500a.png">
+
+
 
