@@ -5,18 +5,6 @@ import "./drum-machine.css";
 
 const DrumMachine = () => {
   const dispatch = useDispatch();
-  // const [kick, setKick] = useState("")
-  // const [click, setClick] = useState("")
-  // const [snare, setSnare] = useState("")
-  // const [clap, setClap] = useState("")
-  // const [highTom, setHighTom] = useState("")
-  // const [lowTom, setLowTom] = useState("")
-  // const [hiHat, setHiHat] = useState("")
-  // const [beep, setBeep] = useState("")
-  // const [ride, setRide] = useState("")
-  // const [vocal, setVocal] = useState("")
-  // const [crash, setCrash] = useState("")
-  // const [sub, setSub] = useState("")
   const drumTypes = useSelector((state) =>
     Object.values(state?.drumTypeReducer.byId)
   );
@@ -76,14 +64,11 @@ const DrumMachine = () => {
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
       const currentDrumKey = drumKey[e.keyCode];
-      console.log("DRUM KEY USE EFFECT", drumKey);
-      console.log(e.keyCode);
       if (currentDrumKey) {
         const audio = new Audio(currentDrumKey.selectedSample);
         audio.play();
       }
     });
-    console.log(drumKeyCodes);
   }, [drumKey]);
 
   useEffect(() => {
@@ -101,16 +86,12 @@ const DrumMachine = () => {
                 className="dropdown"
                 name={drumType.name}
                 onChange={(e) => {
-                  console.log("DRUM KEY CODES AT IDX", drumKeyCodes[idx]);
-                  console.log("E TARGET VALUE", e.target.value);
                   setDrumKey({
                     ...drumKey,
                     [drumKeyCodes[idx]]: {
-                      // drumKey[drumKeyCodes[idx]],
                       selectedSample: e.target.value,
                     },
                   });
-                  console.log("DRUM KEY", drumKey);
                 }}
               >
                 <option selected value="0" disabled>

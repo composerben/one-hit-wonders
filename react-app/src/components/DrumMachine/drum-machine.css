@@ -47,16 +47,14 @@ kbd {
 .black-keys-container {
   display: flex;
   flex-direction: row;
-  /* border: 3px solid purple; */
   justify-content: c;
-  /* width: 100vw; */
 }
 
 .black-keys-layer-one,
 .black-keys-layer-two {
   display: flex;
   color: white;
-  background-color: rgba(0, 0, 0, 0.776);
+  background-color: rgba(26, 25, 25, 0.838);
 }
 
 .black-keys-layer-one {
