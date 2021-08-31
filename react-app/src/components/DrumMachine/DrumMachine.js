@@ -63,8 +63,13 @@ const DrumMachine = () => {
 
   const handleKeyDown = (e) => {
     const currentDrumKey = drumKey[e.keyCode];
-    if (currentDrumKey) {
+    if (!currentDrumKey) {
+      return;
+    } else {
       const audio = new Audio(currentDrumKey.selectedSample);
+      if (audio.currentTime !== 0) {
+        audio.currentTime = 0;
+      }
       audio.play();
     }
   };
