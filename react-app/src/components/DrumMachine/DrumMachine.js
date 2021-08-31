@@ -61,14 +61,16 @@ const DrumMachine = () => {
 
   const drumKeyCodes = [65, 87, 83, 69, 68, 70, 84, 71, 89, 72, 85, 74];
 
+  const handleKeyDown = (e) => {
+    const currentDrumKey = drumKey[e.keyCode];
+    if (currentDrumKey) {
+      const audio = new Audio(currentDrumKey.selectedSample);
+      audio.play();
+    }
+  };
+
   useEffect(() => {
-    window.addEventListener("keydown", (e) => {
-      const currentDrumKey = drumKey[e.keyCode];
-      if (currentDrumKey) {
-        const audio = new Audio(currentDrumKey.selectedSample);
-        audio.play();
-      }
-    });
+    window.addEventListener("keydown", handleKeyDown);
   }, [drumKey]);
 
   useEffect(() => {
